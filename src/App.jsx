@@ -67,7 +67,7 @@ function App() {
       <section className="panel"><div className="heading"><h2>Tarefas</h2><button className="secondary" onClick={carregar} disabled={carregando}>Atualizar</button></div>
         {carregando && <p>Carregando...</p>}
         {!carregando && tarefas.length === 0 && <p>Nenhuma tarefa encontrada.</p>}
-        <div className="cards">{tarefas.map(a => <article key={a.id} className="card"><div className="heading"><strong>{a.emailCriador}</strong><span className="titulo">{a.titulo}</span></div><p>{a.descricao || 'Sem descrição'}</p></article>)}<p>{a.prioridade || 'Sem prioridade'}</p></div>
+        <div className="cards">{tarefas.map(a => <article key={a.id} className="card"><div className="heading"><strong>{a.emailCriador}</strong><span className="titulo">{a.titulo}</span></div><p>{a.descricao || 'Sem descrição'}</p><p>{a.prioridade || 'Sem prioridade'}</p></article>)}</div>
       </section>
       <section className="panel"><h2>Nova tarefa</h2>
       <form onSubmit={cadastrar}>
