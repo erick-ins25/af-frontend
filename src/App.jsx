@@ -27,7 +27,6 @@ function App() {
     try {
       const accessToken = await token();
       const payload = decodePayload(accessToken);
-      setPermissoes(Array.isArray(payload.permissions) ? payload.permissions : []);
       const resposta = await fetch(`${API}/tarefa`, { headers: { Authorization: `Bearer ${accessToken}` } });
       if (!resposta.ok) throw new Error(`Falha ao listar tarefas (HTTP ${resposta.status})`);
       setTarefas(await resposta.json());
@@ -62,7 +61,6 @@ function App() {
     </header>
     {!isAuthenticated ? <section className="panel center"><h2>Entre para acessar as tarefas</h2><p>Autenticação segura pelo Auth0.</p><button onClick={() => loginWithRedirect()}>Entrar com Auth0</button></section> : <>
       <p>Conectado como <strong>{user?.email || user?.name}</strong></p>
-      {erro && <p className="error" role="alert">{erro}</p>}
       {sucesso && <p className="success" role="status">{sucesso}</p>}
       <section className="panel"><div className="heading"><h2>Tarefas</h2><button className="secondary" onClick={carregar} disabled={carregando}>Atualizar</button></div>
         {carregando && <p>Carregando...</p>}
